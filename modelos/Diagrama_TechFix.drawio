@@ -1218,7 +1218,7 @@
             <mxRectangle height="30" width="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EHovag8wlCtZb_wrzh0b-248" parent="EHovag8wlCtZb_wrzh0b-246" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="status_atual INTEGER NOT NULL DEFAULT 1" vertex="1">
+        <mxCell id="EHovag8wlCtZb_wrzh0b-248" parent="EHovag8wlCtZb_wrzh0b-246" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" value="id_status_atual TEXT NOT NULL" vertex="1">
           <mxGeometry height="30" width="420" x="30" as="geometry">
             <mxRectangle height="30" width="420" as="alternateBounds" />
           </mxGeometry>
