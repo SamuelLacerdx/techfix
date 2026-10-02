@@ -185,3 +185,53 @@ SELECT id, nome_peca, preco_venda AS 'Preço', estoque_atual FROM peca p WHERE p
 DROP VIEW vw_preco_venda_maior_100;
 
 SELECT * FROM vw_preco_venda_maior_100;
+
+CREATE TABLE marca (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_marca TEXT NOT NULL COLLATE NOCASE UNIQUE,
+    status INTEGER NOT NULL DEFAULT 1,
+    data_cadastro TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+    id_funcionario INTEGER NOT NULL,
+    id_funcionario_cargo INTEGER NOT NULL CHECK (id_funcionario_cargo = 1 OR id_funcionario_cargo = 2),
+    FOREIGN KEY (id_funcionario, id_funcionario_cargo) REFERENCES funcionario (id, id_cargo)
+) STRICT;
+
+CREATE TABLE modelo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_modelo TEXT NOT NULL COLLATE NOCASE UNIQUE,
+    status INTEGER NOT NULL DEFAULT 1,
+    data_cadastro TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+    id_funcionario INTEGER NOT NULL,
+    id_funcionario_cargo INTEGER NOT NULL CHECK (id_funcionario_cargo = 1 OR id_funcionario_cargo = 2),
+    FOREIGN KEY (id_funcionario, id_funcionario_cargo) REFERENCES funcionario (id, id_cargo)
+) STRICT;
+
+CREATE TABLE tipo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_tipo TEXT NOT NULL COLLATE NOCASE UNIQUE,
+    status INTEGER NOT NULL DEFAULT 1,
+    data_cadastro TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+    id_funcionario INTEGER NOT NULL,
+    id_funcionario_cargo INTEGER NOT NULL CHECK (id_funcionario_cargo = 1),
+    FOREIGN KEY (id_funcionario, id_funcionario_cargo) REFERENCES funcionario (id, id_cargo)
+) STRICT;
+
+CREATE TABLE equipamento (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_equipamento TEXT NOT NULL COLLATE NOCASE,
+    id_cliente INTEGER NOT NULL,
+    id_marca INTEGER NOT NULL,
+    id_modelo INTEGER NOT NULL,
+    id_tipo INTEGER NOT NULL,
+    id_funcionario integer NOT NULL,
+    id_funcionario_cargo INTEGER NOT NULL CHECK (id_funcionario_cargo = 1 OR id_funcionario_cargo = 2),
+    sn TEXT COLLATE NOCASE,
+    imei TEXT COLLATE NOCASE UNIQUE,
+    status INTEGER NOT NULL DEFAULT 1,
+    data_cadastro TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+    FOREIGN KEY (id_cliente) REFERENCES cliente (id),
+    FOREIGN KEY (id_marca) REFERENCES marca (id),
+    FOREIGN KEY (id_modelo) REFERENCES modelo (id),
+    FOREIGN KEY (id_tipo) REFERENCES tipo (id),
+    FOREIGN KEY (id_funcionario, id_funcionario_cargo) REFERENCES funcionario (id, id_cargo)
+) STRICT;
