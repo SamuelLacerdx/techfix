@@ -130,7 +130,6 @@ CREATE TABLE peca (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome_peca TEXT NOT NULL COLLATE NOCASE UNIQUE,
     id_categoria INTEGER NOT NULL,
-    preco_compra INTEGER NOT NULL,
     preco_venda INTEGER NOT NULL,
     estoque_atual INTEGER NOT NULL,
     id_funcionario INTEGER NOT NULL,
@@ -141,41 +140,41 @@ CREATE TABLE peca (
     FOREIGN KEY (id_categoria) REFERENCES categoria (id)
 ) STRICT;
 
-INSERT INTO peca (nome_peca, id_categoria, preco_compra, preco_venda, estoque_atual, id_funcionario, id_funcionario_cargo) VALUES
-('Display Frontal Completo iPhone 11', 12, 18000, 35000, 4, 1, 1),
-('Display Frontal Completo Samsung Galaxy A54', 12, 16000, 31000, 6, 1, 1),
-('Display Frontal Completo Motorola Moto G84', 12, 14000, 28000, 5, 1, 1),
-('Bateria Compatível iPhone 11 (3110mAh)', 13, 7500, 16000, 8, 1, 1),
-('Bateria Compatível Samsung Galaxy A32', 13, 6000, 13000, 7, 1, 1),
-('Bateria Compatível Moto G30', 13, 5500, 12000, 6, 1, 1),
-('Conector de Carga Type-C Universal (Unidade)', 14, 250, 2000, 100, 1, 1),
-('Conector de Carga Micro USB V8', 14, 150, 1500, 100, 1, 1),
-('Flex de Carga e Microfone Moto G9 Play', 14, 1800, 5500, 10, 1, 1),
-('Tampa Traseira de Vidro iPhone 12', 15, 4000, 11000, 4, 1, 1),
-('Câmera Traseira Principal Redmi Note 11', 14, 6500, 14000, 3, 1, 1),
-('Alto-Falante Auricular Universal', 14, 500, 2500, 40, 1, 1),
-('Barra de LED TV Samsung 50" (Kit com 3 barras)', 16, 11000, 23000, 4, 1, 1),
-('Barra de LED TV LG 43" (Kit com 3 barras)', 16, 9500, 19500, 5, 1, 1),
-('Placa Fonte TV Samsung UN50TU8000', 16, 16000, 31000, 2, 1, 1),
-('Placa Principal TV LG 43UP7500', 16, 21000, 42000, 2, 1, 1),
-('Cabo Flat T-Con para Display TV 55"', 16, 2200, 6500, 8, 1, 1),
-('Receptor Infravermelho para Controle Remoto TV', 14, 400, 2000, 15, 1, 1),
-('Solda em Fio Sn60/Pb40 0.8mm (Carretel 500g)', 10, 8500, 15000, 3, 1, 1),
-('Álcool Isopropílico 99.8% 1 Litro', 10, 2200, 4500, 12, 1, 1),
-('Fita Kapton Térmica 10mm x 33m', 10, 1200, 3000, 15, 1, 1),
-('Fita Dupla Face Fixação de Telas (3mm x 50m)', 10, 1500, 3500, 10, 1, 1),
-('Fusível de Louça 5A 250V (Pacote c/ 10)', 14, 500, 1800, 20, 1, 1),
-('Capacitor Eletrolítico 1000uF x 25V', 14, 80, 500, 150, 1, 1),
-('SSD NVMe 512GB M.2', 9, 14000, 26000, 15, 1, 1),
-('SSD SATA III 480GB 2.5"', 9, 11000, 21000, 20, 1, 1),
-('Memória RAM DDR4 8GB 2666MHz (Notebook)', 9, 9000, 17000, 12, 1, 1),
-('Memória RAM DDR4 16GB 3200MHz (Desktop)', 9, 18000, 32000, 8, 1, 1),
-('Pasta Térmica de Alta Performance (Bisnaga 4g)', 10, 2500, 6000, 25, 1, 1),
-('Fonte ATX 500W 80 Plus Bronze', 9, 19000, 34000, 6, 1, 1),
-('Bateria Célula Moeda CR2032 (Cartela c/ 5)', 10, 800, 2500, 30, 1, 1),
-('Cooler para Processador Socket Universal', 9, 4500, 9500, 10, 1, 1),
-('Cabo SATA III 6Gbps 50cm', 11, 300, 1500, 50, 1, 1),
-('Tela LED 15.6" Slim 30 Pinos Full HD', 12, 28000, 48000, 5, 1, 1);
+INSERT INTO peca (nome_peca, id_categoria, preco_venda, estoque_atual, id_funcionario, id_funcionario_cargo) VALUES
+('Display Frontal Completo iPhone 11', 12, 35000, 4, 1, 1),
+('Display Frontal Completo Samsung Galaxy A54', 12, 31000, 6, 1, 1),
+('Display Frontal Completo Motorola Moto G84', 12, 28000, 5, 1, 1),
+('Bateria Compatível iPhone 11 (3110mAh)', 13, 16000, 8, 1, 1),
+('Bateria Compatível Samsung Galaxy A32', 13, 13000, 7, 1, 1),
+('Bateria Compatível Moto G30', 13, 12000, 6, 1, 1),
+('Conector de Carga Type-C Universal (Unidade)', 14, 2000, 100, 1, 1),
+('Conector de Carga Micro USB V8', 14, 1500, 100, 1, 1),
+('Flex de Carga e Microfone Moto G9 Play', 14, 5500, 10, 1, 1),
+('Tampa Traseira de Vidro iPhone 12', 15, 11000, 4, 1, 1),
+('Câmera Traseira Principal Redmi Note 11', 14, 14000, 3, 1, 1),
+('Alto-Falante Auricular Universal', 14, 2500, 40, 1, 1),
+('Barra de LED TV Samsung 50" (Kit com 3 barras)', 16, 23000, 4, 1, 1),
+('Barra de LED TV LG 43" (Kit com 3 barras)', 16, 19500, 5, 1, 1),
+('Placa Fonte TV Samsung UN50TU8000', 16, 31000, 2, 1, 1),
+('Placa Principal TV LG 43UP7500', 16, 42000, 2, 1, 1),
+('Cabo Flat T-Con para Display TV 55"', 16, 6500, 8, 1, 1),
+('Receptor Infravermelho para Controle Remoto TV', 14, 2000, 15, 1, 1),
+('Solda em Fio Sn60/Pb40 0.8mm (Carretel 500g)', 10, 15000, 3, 1, 1),
+('Álcool Isopropílico 99.8% 1 Litro', 10, 4500, 12, 1, 1),
+('Fita Kapton Térmica 10mm x 33m', 10, 3000, 15, 1, 1),
+('Fita Dupla Face Fixação de Telas (3mm x 50m)', 10, 3500, 10, 1, 1),
+('Fusível de Louça 5A 250V (Pacote c/ 10)', 14, 1800, 20, 1, 1),
+('Capacitor Eletrolítico 1000uF x 25V', 14, 500, 150, 1, 1),
+('SSD NVMe 512GB M.2', 9, 26000, 15, 1, 1),
+('SSD SATA III 480GB 2.5"', 9, 21000, 20, 1, 1),
+('Memória RAM DDR4 8GB 2666MHz (Notebook)', 9, 17000, 12, 1, 1),
+('Memória RAM DDR4 16GB 3200MHz (Desktop)', 9, 32000, 8, 1, 1),
+('Pasta Térmica de Alta Performance (Bisnaga 4g)', 10, 6000, 25, 1, 1),
+('Fonte ATX 500W 80 Plus Bronze', 9, 34000, 6, 1, 1),
+('Bateria Célula Moeda CR2032 (Cartela c/ 5)', 10, 2500, 30, 1, 1),
+('Cooler para Processador Socket Universal', 9, 9500, 10, 1, 1),
+('Cabo SATA III 6Gbps 50cm', 11, 1500, 50, 1, 1),
+('Tela LED 15.6" Slim 30 Pinos Full HD', 12, 48000, 5, 1, 1);
 
 SELECT * FROM peca p WHERE p.preco_venda >= 10000;
 
@@ -353,14 +352,35 @@ CREATE TABLE ordem_peca (
     id_tecnico INTEGER NOT NULL,
     id_cargo_tecnico INTEGER NOT NULL CHECK (id_cargo_tecnico = 3),
     data_saida TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
-    
+    quantidade INTEGER NOT NULL,
+	valor_unitario INTEGER NOT NULL,
     FOREIGN KEY (id_peca) REFERENCES peca (id),
     FOREIGN KEY (id_ordem_servico) REFERENCES ordem_servico (id),
     FOREIGN KEY (id_tecnico, id_cargo_tecnico) REFERENCES funcionario (id, id_cargo)
 ) STRICT;
-	
-	
-	
+
+CREATE TABLE ordem_situacao(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_situacao INTEGER NOT NULL,
+    id_ordem_servico INTEGER NOT NULL,
+    id_funcionario INTEGER NOT NULL,
+    data_situacao TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+	FOREIGN KEY (id_funcionario) REFERENCES funcionario (id)
+    FOREIGN KEY (id_ordem_servico) REFERENCES ordem_servico (id),
+	FOREIGN KEY (id_situacao) REFERENCES situacao (id)
+) STRICT;	
+
+CREATE TABLE servico_ordem_servico (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_servico INTEGER NOT NULL,
+    id_ordem_servico INTEGER NOT NULL,
+    preco INTEGER NOT NULL,
+    quantidade INTEGER NOT NULL,
+    data_execucao TEXT NOT NULL DEFAULT (DATETIME('now', 'localtime')),
+   	FOREIGN KEY (id_servico) REFERENCES servicos (id),
+    FOREIGN KEY (id_ordem_servico) REFERENCES ordem_servico (id)
+);
+
 INSERT INTO situacao (nome_situacao) VALUES 
 ('Aberto'),
 ('Em Diagnóstico'),
@@ -368,7 +388,12 @@ INSERT INTO situacao (nome_situacao) VALUES
 ('Em Reparo'),
 ('Pronto'),
 ('Entregue'),
-('Cancelado');
+('Cancelado'),
+('Descarte por Defeito/Avaria'),
+('Uso em Reparo (OS)');
+
+DROP TABLE situacao;
+
 
 INSERT INTO forma_pagamento (nome_forma_pagamento, id_funcionario, id_funcionario_cargo) VALUES 
 ('Dinheiro', 1, 1),
@@ -376,3 +401,8 @@ INSERT INTO forma_pagamento (nome_forma_pagamento, id_funcionario, id_funcionari
 ('Cartão de Crédito', 1, 1),
 ('Cartão de Débito', 1, 1),
 ('Transferência Bancária', 1, 1);
+
+
+INSERT INTO ordem_servico (id_equipamento, id_funcionario_abertura, id_cargo_abertura, id_tecnico, id_cargo_tecnico, data_abertura, data_fechamento, descricao_defeito, defeito_costatado, valor_total, id_pagamento, id_situacao_atual) VALUES
+(1, 1, 1, 4, 3, '2026-06-01 08:30:00', '2026-06-03 17:00:00', 'Computador não liga após queda de energia.', 'Fonte de alimentação queimada.', 35000, 1, 3),
+(2, 1, 1, 4, 3, '2026-06-05 10:15:00', NULL, 'Notebook travando na tela de inicialização.', 'SSD com setores defeituosos.', NULL, 2, 1);
