@@ -336,7 +336,9 @@ CREATE TABLE ordem_servico(
 	valor_total INTEGER NULL,
 	id_pagamento INTEGER NOT NULL,
 	id_situacao_atual INTEGER NOT NULL,
+	id_servico INTEGER NOT NULL,
 	
+	FOREIGN KEY (id_servico) REFERENCES servicos (id),
 	FOREIGN KEY (id_equipamento) REFERENCES equipamento (id),
     FOREIGN KEY (id_funcionario_abertura, id_cargo_abertura) REFERENCES funcionario (id, id_cargo),
     FOREIGN KEY (id_tecnico, id_cargo_tecnico) REFERENCES funcionario (id, id_cargo),
@@ -403,6 +405,50 @@ INSERT INTO forma_pagamento (nome_forma_pagamento, id_funcionario, id_funcionari
 ('Transferência Bancária', 1, 1);
 
 
-INSERT INTO ordem_servico (id_equipamento, id_funcionario_abertura, id_cargo_abertura, id_tecnico, id_cargo_tecnico, data_abertura, data_fechamento, descricao_defeito, defeito_costatado, valor_total, id_pagamento, id_situacao_atual) VALUES
-(1, 1, 1, 4, 3, '2026-06-01 08:30:00', '2026-06-03 17:00:00', 'Computador não liga após queda de energia.', 'Fonte de alimentação queimada.', 35000, 1, 3),
-(2, 1, 1, 4, 3, '2026-06-05 10:15:00', NULL, 'Notebook travando na tela de inicialização.', 'SSD com setores defeituosos.', NULL, 2, 1);
+INSERT INTO ordem_servico (
+    id_equipamento, id_funcionario_abertura, id_cargo_abertura, 
+    id_tecnico, id_cargo_tecnico, data_abertura, data_fechamento, 
+    descricao_defeito, defeito_costatado, valor_total, 
+    id_pagamento, id_situacao_atual, id_servico
+) VALUES
+(1, 1, 1, 4, 3, '2026-06-01 08:30:00', '2026-06-03 17:00:00', 'Computador não liga após queda de energia.', 'Fonte de alimentação queimada.', 35000, 1, 3, 1),
+(2, 1, 1, 4, 3, '2026-06-05 10:15:00', NULL, 'Notebook travando na tela de inicialização.', 'SSD com setores defeituosos.', NULL, 2, 1, 1);
+
+CREATE TRIGGER trg_ai_servico_ordem_servico_atualiza_valor_total_ordem_servico 
+AFTER INSERT ON servico_ordem_servico
+FOR EACH ROW
+BEGIN 
+    UPDATE ordem_servico
+    SET valor_total = COALESCE(valor_total, 0) + (NEW.preco * NEW.quantidade)
+    WHERE id = NEW.id_ordem_servico;
+END;
+
+INSERT INTO servico_ordem_servico (id_ordem_servico, id_servico, preco, quantidade)
+VALUES (1,6, (SELECT preco FROM servicos s WHERE id=6),1);
+
+CREATE TRIGGER trg_ad_servico_ordem_servico_atualiza_valor_total_ordem_servico 
+AFTER DELETE ON servico_ordem_servico
+FOR EACH ROW
+BEGIN 
+    UPDATE ordem_servico
+    SET valor_total = (valor_total) - (OLD.preco * OLD.quantidade)
+    WHERE id = OLD.id_ordem_servico;
+END;
+
+DELETE FROM servico_ordem_servico WHERE id = 1;
+
+CREATE TRIGGER trg_bi_ordem_peca_valida_estoque
+BEFORE INSERT ON ordem_peca
+FOR EACH ROW
+BEGIN
+    SELECT CASE
+        WHEN COALESCE((
+            SELECT estoque_atual
+            FROM peca
+            WHERE id = NEW.id_peca
+        ), 0) < NEW.quantidade
+
+END;
+
+
+
